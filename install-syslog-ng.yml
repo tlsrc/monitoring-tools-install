@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  gather_facts: no
+  sudo: yes
+  tasks:
+    - name: Install EPEL package
+      yum: name=epel-release state=latest
+    - name: Install syslog-ng
+      yum: name=syslog-ng state=latest
+...
