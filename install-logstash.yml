@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  gather_facts: no
+  sudo: yes
+  tasks:
+    - name: Install selinux bindings 
+      yum: name=libselinux-python state=present 
+    - name: Install java
+      yum: name=java state=latest
+    - name: Add elastic RPM key
+      rpm_key: key=http://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+    - name: Create logstash.repo file
+      copy: src=./files/logstash.repo dest=/etc/yum.repos.d/logstash.repo owner=root group=root mode=0644
+    - name: Install logstash
+      yum: name=logstash state=latest
+...
