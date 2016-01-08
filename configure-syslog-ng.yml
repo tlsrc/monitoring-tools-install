@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  gather_facts: no
+  sudo: yes
+  vars:
+    conf_file: /etc/syslog-ng/syslog-ng.conf
+  tasks:
+    - name: Add file source
+      lineinfile: dest={{ conf_file }} line="source s_messages { file(\"/var/log/messages\" flags(no-parse)); };"
+    - name: Add tcp destination in syslog-ng configuration 
+      lineinfile: dest={{ conf_file }} line="destination d_syslog { tcp(\"localhost\" port(6514)); };"
+    - name: Add log statement to link source to destination
+      lineinfile: dest={{ conf_file }} line="log { source(s_messages); destination(d_syslog); };" 
+    - name: Restart syslog-ng service
+      service: name=syslog-ng state=restarted
+...
