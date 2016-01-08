@@ -1,0 +1,6 @@
+---
+#TODO : configure logstah service with /etc/logstash/conf.d
+- hosts: logdestination
+  gather_facts: no
+  sudo: yes
+...
