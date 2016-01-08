@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: logsource
   gather_facts: no
   sudo: yes
   tasks:
