@@ -12,7 +12,7 @@ This repo holds playbooks used to install different logging and monitoring tools
         - the hostname of the server producing the logs
         - a variable log_file indicating the log file where the logs are produced
         - a variable log_dest_host indicating the hostname of the server collecting the logs
-    - a "logdestination" group containing
+     - a "logdestination" group containing
         - the hostname of the server receiving the logs
 
 ## Inventory file example
