@@ -30,3 +30,7 @@ localhost log_file=/var/log/messages log_dest_host=localhost
 [logdestination]
 localhost 
 ```
+
+## Usage
+`ansible-playbook <yml_file>`
+Install playbooks should be run before configure playbooks
