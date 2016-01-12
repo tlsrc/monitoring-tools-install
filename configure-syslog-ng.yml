@@ -4,19 +4,21 @@
   sudo: yes
   vars:
     conf_file: /etc/syslog-ng/syslog-ng.conf
+    source_name: source s_logfile
+    destination_name: destination d_logserver
   tasks:
     - name: Add file source
       lineinfile:
         dest={{ conf_file }}
-        line="source s_logfile { file(\"{{ log_file }}\" flags(no-parse)); };"
-        regexp="^source s_messages"
+        line="{{ source_name }} { file(\"{{ log_file }}\" flags(no-parse)); };"
+        regexp="^{{ source_name }} "
         state=present
         insertafter=EOF
-    - name: Add tcp destination
+    - name: Add tcp destination 
       lineinfile:
         dest={{ conf_file }}
-        line="destination d_logserver { tcp(\"{{ log_dest_host }}\" port({{ log_dest_port }})); };"
-        regexp="^destination d_logserver"
+        line="{{ destination_name }} { tcp(\"{{ log_dest_host }}\" port({{ log_dest_port }})); };"
+        regexp="^{{ destination_name }} "
         state=present
         insertafter=EOF
     - name: Add log statement to link source to destination
